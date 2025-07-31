@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cache %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="row">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-5">
+                <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+                    <h3 class="text-center mb-4">Profile</h3>
+                    <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if request.GET.text %}
+                            <input type="hidden" name="text" value="{{ request.GET.text }}">
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3 text-center">
+                                {% if user.image %}
+                                    <img src="{{ user.image.url }}" alt="Аватар пользователя" class="img-fluid rounded-circle" style="max-width: 150px;">
+                                {% else %}
+                                    <img src="{% static "deps/images/baseavatar.jpg" %}" alt="Аватар пользователя" class="img-fluid rounded-circle" style="max-width: 150px;">
+                                {% endif %}
+                                <input type="file" class="form-control mt-3" id="id_image"
+                                    name="image"
+                                    accept="image/*">
+                                    {% if form.image.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.image.errors}}</div>
+                                    {% endif %}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_first_name" class="form-label">First name*</label>
+                                <input type="text" class="form-control" id="id_first_name"
+                                    placeholder="Enter your name" 
+                                    name = "first_name"
+                                    value="{{form.first_name.value}}" 
+                                    required
+                                    >
+                                    {% if form.first_name.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
+                                    {% endif %}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_last_name" class="form-label">Last name*</label>
+                                <input type="text" class="form-control" id="id_last_name"
+                                    placeholder="Enter your last name" 
+                                    name = "last_name"
+                                    value="{{form.last_name.value}}" 
+                                    required
+                                    >
+                                    {% if form.last_name.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
+                                    {% endif %}
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="id_username" class="form-label">Username*</label>
+                                <input type="text" class="form-control" id="id_username"
+                                    placeholder="Enter your username" 
+                                    name = "username"
+                                    value="{{form.username.value}}" 
+                                    required
+                                    >
+                                    {% if form.username.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="id_email" class="form-label">Google Email</label>
+                                <input type="email" class="form-control" id="id_email"
+                                       name="email"
+                                       value="{{ request.user.email }}"
+                                       placeholder="Your Gmail address"
+                                       disabled
+                                >
+                            </div>
+
+
+                        </div>
+                        <button type="submit" class="btn btn-dark">Save</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="mb-3">
+                    <h5>Password</h5>
+                    {% if user.has_usable_password %}
+                        <a href="{% url 'account_change_password' %}" class="btn btn-warning">Change password</a>
+                    {% else %}
+                        <p>You haven't set a password yet. You'll need this to sign in without Google.</p>
+                        <a href="{% url 'account_set_password' %}" class="btn btn-danger">Set password</a>
+                    {% endif %}
+                </div>                
+                <a href="{% url 'users:account_delete' %}" class="btn btn-danger">Delete account</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

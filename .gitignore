@@ -1,0 +1,12 @@
+venv/
+.pylintrc
+__pychache__/
+cache/
+.env.template
+
+.vscode
+.idea
+
+db.sqlite3
+media/
+.env
