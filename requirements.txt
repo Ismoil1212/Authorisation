@@ -1,7 +1,6 @@
 asgiref==3.9.1
 certifi==2025.7.14
 cffi==1.17.1
-charset-normalizer==3.4.2
 cryptography==45.0.5
 Django==5.2.4
 django-allauth==65.10.0
@@ -13,5 +12,6 @@ pycparser==2.22
 PyJWT==2.10.1
 requests==2.32.4
 sqlparse==0.5.3
-tzdata==2025.2
-urllib3==2.5.0
+gunicorn==21.2.0
+whitenoise==6.9.0
+dj-database-url==3.0.1
