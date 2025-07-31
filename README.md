@@ -45,6 +45,7 @@ pip install -r requirements.txt
 SECRET_KEY=your_secret_key
 DEBUG=False
 DATABASE_URL=postgres://user:password@localhost:5432/dbname
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
 EMAIL_HOST_USER=your_email@example.com
 EMAIL_HOST_PASSWORD=your_email_password
 GOOGLE_CLIENT_ID=your_google_client_id
