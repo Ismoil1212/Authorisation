@@ -38,7 +38,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 env = environ.Env(DEBUG=(bool, False))
 
-DEBUG = env("DEBUG")
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "authorisation-6wtl.onrender.com",
