@@ -40,7 +40,9 @@ env = environ.Env(DEBUG=(bool, False))
 
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["authorisation-3t0g.onrender.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "authorisation-6wtl.onrender.com",
+]
 
 
 # Application definition
